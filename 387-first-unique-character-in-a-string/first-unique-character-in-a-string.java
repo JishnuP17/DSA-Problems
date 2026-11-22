@@ -1,7 +1,7 @@
 class Solution {
     public int firstUniqChar(String s) {
 
-        HashMap<Character, Integer> d = new HashMap<>();
+        LinkedHashMap<Character, Integer> d = new LinkedHashMap<>();
 
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
@@ -12,11 +12,11 @@ class Solution {
                 d.put(ch, 1);
         }
 
-        for (int i = 0; i < s.length(); i++) {
-            char ch = s.charAt(i);
+        int i = 0;
 
+        for (char ch : d.keySet()) {
             if (d.get(ch) == 1)
-                return i;
+                return s.indexOf(ch);
         }
 
         return -1;
