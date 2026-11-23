@@ -20,6 +20,9 @@ class Solution {
             temp = temp.next;
         }
         k = k%cnt;
+        if(k==0){
+            return head;
+        }
         temp=head;
         ListNode tail;
         while(temp.next!=null){
