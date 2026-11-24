@@ -1,18 +1,20 @@
 class Solution {
-    public int[] canSeePersonsCount(int[] h) {
-        int res[] = new int[h.length];
-        Stack<Integer> s = new Stack<>();
-        for(int i=h.length-1;i>=0;i=i-1){
-            while(!s.isEmpty() && h[s.peek()]<h[i]){
-                res[i] = res[i]+1;
-                s.pop();
-            }
-            if(!s.isEmpty()){
-                res[i] = res[i]+1;
-            }
-            s.push(i);
+    public int[] canSeePersonsCount(int[] heights) {
+        Stack<Integer> st = new Stack<>();
+        int[] arr = new int[heights.length];
+        for(int i=0;i<heights.length;i++){
+            arr[i] = 0;
         }
-        return res;
-        
+        for(int i=heights.length-1;i>=0;i--){
+            while(!st.isEmpty() && st.peek()<heights[i]){
+                st.pop();
+                arr[i] = arr[i]+1;
+            }
+            if(!st.isEmpty()){
+                arr[i] = arr[i]+1;
+            }
+            st.push(heights[i]);
+        }
+        return arr;
     }
 }
